@@ -78,15 +78,12 @@ void loop() {
     distSTL = longHand > shortHand ? longHand - shortHand : 120 - shortHand + longHand;
     distLTS = 120 - distSTL;
 
-    //update colors
     double iterations = 0;
     for (int i = shortHand; i != longHand; i = (i + 1) % 120) {
-      //figure out color
       int color [3];
       for(int i = 0; i < 3; i++){
         color[i] = (int) (colorSTL[i] - colorSTLBlend[i]) * iterations / distSTL + colorSTLBlend[i];
       }
-      
       
       strip.setPixelColor(i, color[0], color[1], color[2]);
       strip.show();
@@ -100,11 +97,6 @@ void loop() {
       for(int i = 0; i < 3; i++){
         color[i] = (int) (colorLTS[i] - colorLTSBlend[i]) * iterations / distLTS + colorLTSBlend[i];
       }
-      Serial.print(iterations);
-      Serial.print(" ");
-      Serial.print(distLTS);
-      Serial.print(" ");
-      Serial.println(iterations / distLTS);
       
       strip.setPixelColor(i, color[0], color[1], color[2]);
       strip.show();
